@@ -3,7 +3,7 @@
 A simple CLI for making HTML files from EJS templates.
 
 ```bash
-npm i -D ejs2html
+npm i ejs2html -g
 ```
 
 ```bash
