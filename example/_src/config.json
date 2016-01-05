@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "dest": "index.html",
+      "template": "layout",
+      "locals": {
+        "title": "Home",
+        "message": "Welcome to my app."
+      }
+    },
+    {
+      "dest": "about/index.html",
+      "template": "layout",
+      "locals": {
+        "title": "About",
+        "message": "This is the about view."
+      }
+    }
+  ],
+  "globals": {
+    "app_name": "My App"
+  }
+}

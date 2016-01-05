@@ -1,0 +1,28 @@
+{
+  "name": "ejs2html",
+  "version": "1.0.0",
+  "description": "A simple CLI for making HTML files from EJS templates.",
+  "main": "bin/index.js",
+  "preferGlobal": true,
+  "scripts": {
+    "example": "node bin/index.js example/_src/config.json example/compiled",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ejs",
+    "simple",
+    "simpl",
+    "html",
+    "markup",
+    "static"
+  ],
+  "author": "Chad Watson <chad@40digits.com> (http://chadwatson.io/)",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0",
+    "ejs": "^2.3.4",
+    "file-exists": "^1.0.0",
+    "fs-extra": "^0.26.3"
+  }
+}
