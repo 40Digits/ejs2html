@@ -2,7 +2,13 @@
   "name": "ejs2html",
   "version": "1.0.0",
   "description": "A simple CLI for making HTML files from EJS templates.",
-  "main": "bin/index.js",
+  "main": "cli.js",
+  "bin": {
+    "ejs2html": "cli.js"
+  },
+  "engines": {
+    "node": ">=4"
+  },
   "preferGlobal": true,
   "scripts": {
     "example": "node bin/index.js example/_src/config.json example/compiled",
