@@ -7,8 +7,8 @@ const fs = require('fs-extra');
 const program = require('commander');
 const ejs = require('ejs');
 const exists = require('file-exists');
-const pkg = require('../package.json');
-const log = require('../lib/log.js');
+const pkg = require('./package.json');
+const log = require('./lib/log.js');
 
 const inputExt = '.ejs';
 const outputExt = '.html';
