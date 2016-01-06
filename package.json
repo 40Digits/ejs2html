@@ -1,6 +1,6 @@
 {
   "name": "ejs2html",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple CLI for making HTML files from EJS templates.",
   "main": "cli.js",
   "bin": {
