@@ -33,7 +33,7 @@ if (!exists(options.config)) {
   return log.error(`Config path does not exist: ${options.config}`);
 }
 
-const config = require(p.resolve(__dirname, '..', options.config));
+const config = require(options.config);
 
 if (!config.files || !config.files.length) {
   return log.error(`No files have been declared in ${options.config}`)
