@@ -2,17 +2,24 @@
 
 A simple CLI for making HTML files from EJS templates.
 
+Install:
+
 ```bash
 npm i ejs2html -g
 ```
 
+Usage:
+
 ```bash
-  Usage: ejs2html [options] <config> [dest]
+ejs2html [options] <config> [dest]
+```
 
-  Options:
+Options:
 
-    -h, --help     output usage information
-    -V, --version  output the version number
+```
+-h, --help                  output usage information
+-V, --version               output the version number
+-r, --read <variable_name>  Read contents from stdin, if available, and pipe to a given global variable name in the config.
 ```
 
 ## Config
@@ -59,6 +66,83 @@ Each file object inside of `files` should include:
   - Full path will look like this: `[cli-dest]/[file-dest][.html]`.
   - `.html` extension is optional
 
+## Reading stdin
+
+Using the `-r, --read <var_name>` option allows you to receive piped data and set the data to a global variable that can be used in your templates. Without declaring this option, `ejs2html` will not do anything with the piped data.
+
+So this will set a new global variable called `message` to the contents of `hello.txt`:
+
+```bash
+cat hello.txt | ejs2html config.json --read message
+```
+
+However, the piped data will be ignored in this example:
+
+```bash
+cat hello.txt | ejs2html config.json
+```
+
+### Example:
+
+```bash
+cat hello.txt | ejs2html config.json --read message
+```
+
+__"hello.txt"__
+
+```
+Hello world!
+```
+
+__"layout.js"__
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p><%- message %></p>
+</body>
+</html>
+```
+
+__"config.json"__
+
+```json
+{
+  "files": [
+    {
+      "dest": "index.html",
+      "template": "layout",
+    }
+  ],
+  "globals": {
+    "title": "My Site",
+    "message": ""
+  }
+}
+```
+
+The result would be:
+
+__"index.html"__
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Site</title>
+</head>
+<body>
+  <h1>My Site</h1>
+  <p>Hello world!</p>
+</body>
+</html>
+```
 
 ## Examples
 

@@ -18,6 +18,7 @@ let options = {};
 program
   .version(pkg.version)
   .arguments('<config> [dest]')
+  .option('-r, --read <variable_name>', 'Read contents from stdin, if available, and pipe to a given global variable name in the config.')
   .action((config, dest) => {
     options.config = config;
     options.dest = dest;
@@ -39,7 +40,24 @@ if (!config.files || !config.files.length) {
   return log.error(`No files have been declared in ${options.config}`)
 }
 
-config.files.forEach(render);
+if (!!program.read) {
+  process.stdin
+    .setEncoding('utf8')
+    .on('readable', () => {
+      let chunk = process.stdin.read();
+
+      config.globals[program.read] = config.globals[program.read] || '';
+
+      if (chunk !== null) {
+        config.globals[program.read] = [config.globals[program.read], chunk].join('');
+      } else {
+        run();
+        process.stdin.emit('end');
+      }
+    });
+} else {
+  run();
+}
 
 /////////////////
 
@@ -137,6 +155,10 @@ function render(fileConfig) {
 
     handleOut(fileConfig, fixIncludePaths(template, fileConfig));
   });
+}
+
+function run() {
+  config.files.forEach(render);
 }
 
 /**
