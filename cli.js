@@ -118,6 +118,10 @@ function handleOut(fileConfig, template) {
 
   let rendered = ejs.render(template, getData(fileConfig), ejsSettings);
 
+  if (!fileConfig.dest) {
+    return process.stdout.write(rendered);
+  }
+
   options.dest = options.dest || '.';
 
   let dest = p.resolve(options.dest, ensureExt(fileConfig.dest, outputExt));
@@ -131,8 +135,6 @@ function handleOut(fileConfig, template) {
       if (err) {
         return log.error(err);
       }
-
-      log.success(`Successfully compiled ${dest}`);
     });
   });
 }
@@ -167,7 +169,7 @@ function run() {
  * @return {Boolean}            Whether or not the config is valid
  */
 function validateFileConfig(fileConfig) {
-  const requiredParams = ['template', 'dest'];
+  const requiredParams = ['template'];
 
   let i = 0;
   let len = requiredParams.length;

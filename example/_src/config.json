@@ -9,7 +9,6 @@
       }
     },
     {
-      "dest": "about/index.html",
       "template": "layout",
       "locals": {
         "title": "About",
