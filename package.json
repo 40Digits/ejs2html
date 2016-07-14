@@ -11,7 +11,7 @@
   },
   "preferGlobal": true,
   "scripts": {
-    "example": "node bin/index.js example/_src/config.json example/compiled",
+    "example": "node cli.js example/_src/config.json example/compiled",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

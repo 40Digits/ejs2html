@@ -64,7 +64,7 @@ if (!!program.read) {
 /**
  * Transforms the declared "include" paths in the template
  * to make sure they are relative to the entry layout.
- * 
+ *
  * @param  {String} data       The raw template string
  * @param  {Object} fileConfig A config object that includes a template, path, and locals
  * @return {String}            The transformed template string
@@ -113,7 +113,7 @@ function ensureExt(filename, ext) {
  */
 function handleOut(fileConfig, template) {
   const ejsSettings = {
-    filename: true
+    filename: "."
   };
 
   let rendered = ejs.render(template, getData(fileConfig), ejsSettings);
